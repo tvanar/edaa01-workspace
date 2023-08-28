@@ -5,7 +5,11 @@ public class TakePinsGame {
         Board b = new Board();
         b.setUp(20);
         Player person = new HumanPlayer("Enar");
-        person.takePins(b);
+        Player computer = new ComputerPlayer("HAL 9000");
+        boolean gameon = true;
+        while(gameon) {
+            
+        }
         System.out.println(b.getNoPins());
     }
 }
