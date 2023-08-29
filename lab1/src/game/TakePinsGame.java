@@ -6,10 +6,12 @@ public class TakePinsGame {
         b.setUp(20);
         Player person = new HumanPlayer("Enar");
         Player computer = new ComputerPlayer("HAL 9000");
+        Player winner;
         boolean gameon = true;
         while(gameon) {
             turn(person,b);
             gameon = winCheck(b);
+            turn(computer, b);
             
         }
         System.out.println(b.getNoPins());
@@ -26,6 +28,10 @@ public class TakePinsGame {
             return false;
         }
         return true;
+    }
+
+    private static void winnerMsg(Player p) {
+        UserInterface.message("Vinnaren är " + p.getUserId() + "!");
     }
 }
 
