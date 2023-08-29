@@ -8,14 +8,19 @@ public class ComputerPlayer extends Player{
         super(userId);
     }
 
+    /*
+     * Tar ett slupmässigt 1 eller två pinnar, om det inte är >= 2 pinnar kvar. Isf tar den resterande och vinner.
+     */
     int takePins (Board b) {
         Random r = new Random();
-        int pinsLeft = b.getNoPins();
-        if (pinsLeft <= 2) {
-            b.takePins(b.getNoPins());
+        int pinsTaken;
+        if (b.getNoPins() <= 2) {
+            pinsTaken = b.getNoPins();
+            b.takePins(pinsTaken);
         } else {
-            b.takePins(r.nextInt(2)+1);
+            pinsTaken = r.nextInt(2)+1;
+            b.takePins(pinsTaken);
         }
-        return 0;
+        return pinsTaken;
     }
 }

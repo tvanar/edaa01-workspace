@@ -4,23 +4,32 @@ public class TakePinsGame {
     public static void main(String[]args) {
         Board b = new Board();
         b.setUp(20);
-        Player person = new HumanPlayer("Enar");
-        Player computer = new ComputerPlayer("HAL 9000");
-        Player winner;
+
+        Player[] players = new Player[2];
+        players[0] = new HumanPlayer("Spelare");
+        players[1] = new ComputerPlayer("HAL 9000");
+        Player winner = null;
+
         boolean gameon = true;
+        int round = 0;
+
         while(gameon) {
-            turn(person,b);
+            winner = players[round];
+            turn(players[round],b);
             gameon = winCheck(b);
-            turn(computer, b);
-            
+            if (round == 0) {
+                round = 1;
+            } else {
+                round = 0;
+            }
         }
-        System.out.println(b.getNoPins());
+        winnerMsg(winner);
 
     
     }
 
     private static void turn(Player p, Board b) {
-        p.takePins(b);
+        UserInterface.message(p.getUserId() + " tog " + p.takePins(b) + " pinnar.");
     }
 
     private static boolean winCheck(Board b) {
