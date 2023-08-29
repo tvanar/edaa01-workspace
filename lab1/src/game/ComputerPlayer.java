@@ -11,10 +11,10 @@ public class ComputerPlayer extends Player{
     int takePins (Board b) {
         Random r = new Random();
         int pinsLeft = b.getNoPins();
-        if (pinsLeft == 2) {
-            b.takePins(1);
+        if (pinsLeft <= 2) {
+            b.takePins(b.getNoPins());
         } else {
-
+            b.takePins(r.nextInt(2)+1);
         }
         return 0;
     }

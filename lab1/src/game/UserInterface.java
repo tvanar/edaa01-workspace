@@ -19,8 +19,16 @@ public class UserInterface {
      * Frågar efter en int
      */
     public static int askForInt(String msg) {
+        int numberOfPins;
         String out = JOptionPane.showInputDialog(f, msg);
-        int numberOfPins = Integer.parseInt(out);
+        if(out == null) {
+            System.exit(0);
+        }
+        try {
+            numberOfPins = Integer.parseInt(out);
+        } catch(NumberFormatException e) {
+            return 0;
+        }
         return numberOfPins;
     }
 }
