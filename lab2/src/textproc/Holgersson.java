@@ -37,6 +37,8 @@ public class Holgersson {
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
+		long t0 = System.nanoTime();
+
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
 			for(TextProcessor p: pList) {
@@ -45,10 +47,14 @@ public class Holgersson {
 			
 		}
 
+		long t1 = System.nanoTime();
+
 		s.close();
 
 		for(TextProcessor p: pList) {
 			p.report();
 		}
+
+		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 	}
 }
