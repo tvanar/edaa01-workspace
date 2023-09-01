@@ -1,0 +1,11 @@
+hashmap:
+1: tid: 12369.0935 ms
+2: tid: 12610.3455 ms
+3: tid: 12533.9461 ms
+
+-> Median 12533.9461 ms
+
+TreeMap:
+1: tid: 9741.4761 ms
+2: tid: 10050.4678 ms
+3:
