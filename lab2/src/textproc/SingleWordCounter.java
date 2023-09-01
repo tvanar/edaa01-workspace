@@ -9,7 +9,7 @@ public class SingleWordCounter implements TextProcessor {
 		n = 0;
 	}
 
-	//Man kan inte jämföra strings med "=="
+	// Man kan inte jämföra strings med "=="
 
 	public void process(String w) {
 		if (w.equals(word)) {
