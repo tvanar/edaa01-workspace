@@ -14,10 +14,11 @@ public class Machine {
 		scheduledTime = 0;
 	}
 
+	//Sista felet, den tilldelade istället för att addera schemalagda tiden
 	/** Tilldelar maskinen jobbet j. */
 	public void assignJob(Job j) {
 		jobs.add(j);
-		scheduledTime = j.getTime();
+		scheduledTime += j.getTime();
 	}
 	
 	/** Tar bort alla jobb från maskinen. */
