@@ -11,6 +11,7 @@ public class GeneralWordCounter implements TextProcessor {
 
     private Set<String> stopwords;
     private TreeMap<String, Integer> words = new TreeMap<>();
+    // private Map<String, Integer> words = new HashMap<>();
 
     public GeneralWordCounter(Set<String> in) {
         stopwords = in;
@@ -41,5 +42,15 @@ public class GeneralWordCounter implements TextProcessor {
             System.out.println(wordList.get(i).getKey() + " " + wordList.get(i).getValue());
         }
 
+    }
+
+    /**
+     * Returnerar en Lista av typ Map.Entry med alla ord
+     */
+    //Ser dunderfult ut
+    public List<Map.Entry<String, Integer>> getWordList() {
+        Set<Map.Entry<String, Integer>> wordSet = words.entrySet();
+        List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
+        return wordList;
     }
 }
