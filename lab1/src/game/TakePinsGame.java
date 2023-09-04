@@ -3,7 +3,13 @@ public class TakePinsGame {
     
     public static void main(String[]args) {
         Board b = new Board();
-        b.setUp(20);
+        
+        int pins = UserInterface.askForInt("Hur många pinnar vill su spela med?");
+        if (pins <= 0) {
+            System.exit(0);
+        }
+        b.setUp(pins);
+
 
         Player[] players = new Player[2];
         players[0] = new HumanPlayer("Spelare");
