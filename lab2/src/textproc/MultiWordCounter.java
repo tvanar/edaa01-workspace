@@ -8,6 +8,10 @@ public class MultiWordCounter implements TextProcessor {
 
     private TreeMap<String, Integer> words = new TreeMap<>();
 
+    /*
+     * Oklart huruvida denna klass fungerar
+     */
+
     public MultiWordCounter(String[] wordArray) {
         for (int i = 0; i < wordArray.length; i++) {
             words.put(wordArray[i], 0);
