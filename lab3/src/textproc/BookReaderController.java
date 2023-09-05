@@ -1,8 +1,7 @@
-package uitextproc;
-import textproc.*;
+package textproc;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-//classpath uppdatering behövs
+import java.awt.Container;
 
 
 public class BookReaderController {
@@ -19,7 +18,6 @@ public class BookReaderController {
         // pane är en behållarkomponent till vilken de övriga komponenterna
         frame.pack();
         frame.setVisible(true);
-
-}
+    }
 
 }
