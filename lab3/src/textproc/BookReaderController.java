@@ -18,21 +18,21 @@ public class BookReaderController {
     }
 
     private void createWindow(GeneralWordCounter counter, String title, int width, int height) {
+
+        
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
-        JList<SortedListModel<List<Map.Entry<String, Integer>>>> list = createList(counter);
+
+        
+
+
+
+        JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>();
         JScrollPane scrollPane = new JScrollPane(list);
         pane.add(scrollPane);
         frame.pack();
         frame.setVisible(true);
-    }
-
-    private JList<SortedListModel<List<Map.Entry<String, Integer>>>> createList(GeneralWordCounter counter) {
-        List<Map.Entry<String, Integer>> wordList = counter.getWordList();
-        JList<SortedListModel<List<Map.Entry<String, Integer>>>> list = new JList<SortedListModel<List<Map.Entry<String, Integer>>>>();
-        DefaultListModel<Map.Entry<String, Integer>> temp = new ArrayList<>();
-        return list;
     }
 
 }

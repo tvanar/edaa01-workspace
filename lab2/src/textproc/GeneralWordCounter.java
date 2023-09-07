@@ -49,8 +49,6 @@ public class GeneralWordCounter implements TextProcessor {
      */
     // Ser dunderfult ut
     public List<Map.Entry<String, Integer>> getWordList() {
-        Set<Map.Entry<String, Integer>> wordSet = words.entrySet();
-        List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordSet);
-        return wordList;
+        return new ArrayList<Map.Entry<String, Integer>>(words.entrySet());
     }
 }
