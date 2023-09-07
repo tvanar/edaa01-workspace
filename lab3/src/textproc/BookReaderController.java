@@ -24,11 +24,12 @@ public class BookReaderController {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Container pane = frame.getContentPane();
 
+        SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(counter.getWordList());
+        JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>(listModel);
         
 
 
-
-        JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>();
+        
         JScrollPane scrollPane = new JScrollPane(list);
         pane.add(scrollPane);
         frame.pack();
