@@ -1,10 +1,13 @@
 package textproc;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 import java.awt.Container;
+import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +31,7 @@ public class BookReaderController {
     private JList<SortedListModel<List<Map.Entry<String, Integer>>>> createList(GeneralWordCounter counter) {
         List<Map.Entry<String, Integer>> wordList = counter.getWordList();
         JList<SortedListModel<List<Map.Entry<String, Integer>>>> list = new JList<SortedListModel<List<Map.Entry<String, Integer>>>>();
+        DefaultListModel<Map.Entry<String, Integer>> temp = new ArrayList<>();
         return list;
     }
 
