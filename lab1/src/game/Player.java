@@ -1,13 +1,14 @@
 package game;
+
 public abstract class Player {
-    
+
     private String userId;
 
     Player(String userId) {
         this.userId = userId;
     }
 
-    /*
+    /**
      * Returnerar UserId string
      */
     String getUserId() {
