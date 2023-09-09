@@ -16,13 +16,13 @@ public class MultiThread extends Thread {
         this.p = p;
     }
 
+
+    //Funkar ej
     @Override
     public void run() {
-        Scanner s = new Scanner(new File(""));
+        Scanner s = new Scanner(System.in);
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
-
-		long t0 = System.nanoTime();
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();

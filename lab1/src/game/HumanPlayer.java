@@ -1,20 +1,23 @@
 package game;
 
-public class HumanPlayer extends Player { 
+public class HumanPlayer extends Player {
 
-    HumanPlayer (String userId) {
+    HumanPlayer(String userId) {
         super(userId);
     }
-    
-    int takePins (Board b) {
+
+    int takePins(Board b) {
         int pinsLeft = b.getNoPins();
         boolean invalid = true;
         int pinsTaken = 0;
 
-        while(invalid) {
-            pinsTaken = UserInterface.askForInt("Din tur.\nDet finns " + pinsLeft + " pinnar kvar.\nHur många vill du ta?");
+        while (invalid) {
+            pinsTaken = UserInterface
+                    .askForInt("Din tur.\nDet finns " + pinsLeft + " pinnar kvar.\nHur många vill du ta?");
             if (pinsTaken == 1 || pinsTaken == 2) {
                 invalid = false;
+            } else if (pinsTaken == -2) {
+                System.exit(0);
             } else {
                 UserInterface.message("Välj ett tal, ett eller två");
             }

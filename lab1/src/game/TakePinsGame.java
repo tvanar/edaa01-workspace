@@ -1,27 +1,33 @@
 package game;
-public class TakePinsGame {
-    
-    public static void main(String[]args) {
-        Board b = new Board();
-        
-        int pins = UserInterface.askForInt("Hur många pinnar vill su spela med?");
-        if (pins <= 0) {
-            System.exit(0);
-        }
-        b.setUp(pins);
 
+public class TakePinsGame {
+
+    public static void main(String[] args) {
+        Board b = new Board();
+
+        Boolean cont = false;
+        while (!cont) {
+            int pins = UserInterface.askForInt("Hur många pinnar vill du spela med?");
+            if (pins == -2) {
+                System.exit(0);
+            } else if (pins > 0) {
+                b.setUp(pins);
+                cont = true;
+            }
+
+        }
 
         Player[] players = new Player[2];
         players[0] = new HumanPlayer("Spelare");
-        players[1] = new ComputerPlayer("HAL 9000");
+        players[1] = new ComputerPlayer2("HAL 9000");
         Player winner = null;
 
         boolean gameon = true;
         int round = 0;
 
-        while(gameon) {
+        while (gameon) {
             winner = players[round];
-            turn(players[round],b);
+            turn(players[round], b);
             gameon = winCheck(b);
             if (round == 0) {
                 round = 1;
@@ -31,7 +37,6 @@ public class TakePinsGame {
         }
         winnerMsg(winner);
 
-    
     }
 
     private static void turn(Player p, Board b) {
@@ -49,5 +54,3 @@ public class TakePinsGame {
         UserInterface.message("Vinnaren är " + p.getUserId() + "!");
     }
 }
-
-
