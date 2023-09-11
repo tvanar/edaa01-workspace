@@ -21,8 +21,7 @@ public class MultiWordCounter implements TextProcessor {
     @Override
     public void process(String w) {
         if (words.containsKey(w)) {
-            // words.compute(w, (k, v) -> v + 1);
-            words.put(w, words.get(w) + 1);
+            words.compute(w, (k, v) -> v + 1);
         }
     }
 
