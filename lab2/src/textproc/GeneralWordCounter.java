@@ -13,6 +13,8 @@ public class GeneralWordCounter implements TextProcessor {
     private TreeMap<String, Integer> words = new TreeMap<>();
     // private Map<String, Integer> words = new HashMap<>();
 
+    //denna klass fungerar
+
     public GeneralWordCounter(Set<String> in) {
         stopwords = in;
     }
@@ -22,7 +24,6 @@ public class GeneralWordCounter implements TextProcessor {
             return;
         } else if (!words.containsKey(w)) {
             words.put(w, 1);
-            return;
         } else {
             for (String key : words.keySet()) {
                 if (key.equals(w)) {

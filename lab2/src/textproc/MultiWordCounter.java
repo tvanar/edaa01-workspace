@@ -9,7 +9,7 @@ public class MultiWordCounter implements TextProcessor {
     private TreeMap<String, Integer> words = new TreeMap<>();
 
     /*
-     * Kanske någonting lurt med stringComp
+     * Någonting lurt med denna klass. Alla andra klasser fungerar utom denna. Kolla på resurstid.
      */
 
     public MultiWordCounter(String[] wordArray) {
@@ -18,12 +18,15 @@ public class MultiWordCounter implements TextProcessor {
         }
     }
 
+    @Override
     public void process(String w) {
         if (words.containsKey(w)) {
-            words.compute(w, (k, v) -> v + 1);
+            // words.compute(w, (k, v) -> v + 1);
+            words.put(w, words.get(w) + 1);
         }
     }
 
+    @Override
     public void report() {
         words.forEach((k, v) -> System.out.println(k + " " + v));
     }
