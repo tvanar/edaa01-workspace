@@ -16,24 +16,22 @@ public class Holgersson {
 
 	public static void main(String[] args) throws FileNotFoundException {
 
-
-		Scanner scan = new Scanner(new File("lab2\\undantagsord.txt"));
+		Scanner scan = new Scanner(new File("lab2\\undantagsord.txt"), "utf-8");
 		Set<String> stopwords = new HashSet<>();
-		while(scan.hasNext()) {
+		while (scan.hasNext()) {
 			stopwords.add(scan.next().toLowerCase());
 		}
 		scan.close();
-
 
 		ArrayList<TextProcessor> pList = new ArrayList<TextProcessor>();
 		pList.add(new SingleWordCounter("nils"));
 		pList.add(new SingleWordCounter("norge"));
 		pList.add(new MultiWordCounter(REGIONS));
 		pList.add(new GeneralWordCounter(stopwords));
-		
 
 		Scanner s = new Scanner(new File("lab2\\n" + //
-				"ilsholg.txt"));
+				"ilsholg.txt"), "utf-8");
+
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
@@ -41,17 +39,17 @@ public class Holgersson {
 
 		while (s.hasNext()) {
 			String word = s.next().toLowerCase();
-			for(TextProcessor p: pList) {
+			for (TextProcessor p : pList) {
 				p.process(word);
 			}
-			
+
 		}
 
 		long t1 = System.nanoTime();
 
 		s.close();
 
-		for(TextProcessor p: pList) {
+		for (TextProcessor p : pList) {
 			p.report();
 		}
 
