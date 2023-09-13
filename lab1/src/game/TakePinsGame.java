@@ -51,6 +51,6 @@ public class TakePinsGame {
     }
 
     private static void winnerMsg(Player p) {
-        UserInterface.message("Vinnaren är " + p.getUserId() + "!");
+        UserInterface.message(String.format("Vinnaren är %s !", p.getUserId()));
     }
 }
