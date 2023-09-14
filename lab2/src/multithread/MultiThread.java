@@ -6,27 +6,33 @@ import java.util.Scanner;
 import textproc.*;
 
 public class MultiThread extends Thread {
-    
+
     private TextProcessor p;
     private int thread;
-    private String m;
+    private File file;
 
-    public MultiThread (TextProcessor p, int thread) {
+    public MultiThread(TextProcessor p, int thread, File file) {
         this.thread = thread;
         this.p = p;
+        this.file = file;
     }
 
+    public int getThreadNbr() {
+        return thread;
+    }
 
-    //Funkar ej
     @Override
     public void run() {
-        Scanner s = new Scanner(System.in);
-		s.findWithinHorizon("\uFEFF", 1);
-		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
+        // Scanner s = new Scanner(file);
+        // s.findWithinHorizon("\uFEFF", 1);
+        // s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
 
-		while (s.hasNext()) {
-			String word = s.next().toLowerCase();
-			p.process(word);
-		}
+        // long t0 = System.nanoTime();
+
+        // while (s.hasNext()) {
+        //     String word = s.next().toLowerCase();
+        //     p.process(word);
+        // }
+        // s.close();
     }
 }

@@ -18,37 +18,37 @@ public class Holgerv2 {
 	public static void main(String[] args) throws FileNotFoundException {
 
 
-		Scanner scan = new Scanner(new File("lab2\\undantagsord.txt"));
-		Set<String> stopwords = new HashSet<>();
-		while(scan.hasNext()) {
-			stopwords.add(scan.next().toLowerCase());
-		}
-		scan.close();
+		// Scanner scan = new Scanner(new File("lab2\\undantagsord.txt"));
+		// Set<String> stopwords = new HashSet<>();
+		// while(scan.hasNext()) {
+		// 	stopwords.add(scan.next().toLowerCase());
+		// }
+		// scan.close();
 
+		// SingleWordCounter p1 = new SingleWordCounter("nils");
+		// SingleWordCounter p2 = new SingleWordCounter("norge");
+		// MultiWordCounter p3 = new MultiWordCounter(REGIONS);
+		// GeneralWordCounter p4 = new GeneralWordCounter(stopwords);
 
-		ArrayList<TextProcessor> pList = new ArrayList<TextProcessor>();
-		pList.add(new SingleWordCounter("nils"));
-		pList.add(new SingleWordCounter("norge"));
-		pList.add(new MultiWordCounter(REGIONS));
-		pList.add(new GeneralWordCounter(stopwords));
-        ArrayList<MultiThread> m = new ArrayList<MultiThread>();
+		// File f = new File("lab2\\nilsholg.txt");
+		// long t0 = System.nanoTime();
+        
+		// MultiThread th1 = new MultiThread(p1,1, f);
+		// MultiThread th2 = new MultiThread(p2,2, f);
+		// MultiThread th3 = new MultiThread(p3,3, f);
+		// MultiThread th4 = new MultiThread(p4, 4, f);
 
-        for (TextProcessor p: pList) {
-            m.add(new MultiThread(p, pList.indexOf(p)));
-        } 
-		long t0 = System.nanoTime();
-        for(MultiThread th: m) {
-            th.start();
-        }
+		// long t1 = System.nanoTime();
+		// th1.start();
+		// th2.start();
+		// th3.start();
+		// th4.start();
 
+		// p1.report();
+		// p2.report();
+		// p3.report();
+		// p4.report();
 
-		long t1 = System.nanoTime();
-
-
-		for(TextProcessor p: pList) {
-			p.report();
-		}
-
-		System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
+		// System.out.println("tid: " + (t1 - t0) / 1000000.0 + " ms");
 	}
 }
