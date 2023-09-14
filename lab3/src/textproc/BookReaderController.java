@@ -3,8 +3,11 @@ package textproc;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
+
+import java.awt.BorderLayout;
 import java.awt.Container;
 import java.util.Map;
 
@@ -26,13 +29,18 @@ public class BookReaderController {
                 
 
         JScrollPane scrollPane = new JScrollPane(list);
-        JButton button = new JButton("Alphabetical");
-
+        JButton alpha = new JButton("Alphabetical");
+        JButton freq = new JButton("Frequency");
+        JPanel panel = new JPanel();
+        panel.add(alpha);
+        panel.add(freq);
+        
+        alpha.addActionListener(null);//??????
         
 
         pane.add(scrollPane);
-        pane.add(button);
-
+        pane.add(panel, BorderLayout.SOUTH);
+        
         frame.pack();
         frame.setVisible(true);
     }
