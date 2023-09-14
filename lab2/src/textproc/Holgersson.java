@@ -29,8 +29,7 @@ public class Holgersson {
 		pList.add(new MultiWordCounter(REGIONS));
 		pList.add(new GeneralWordCounter(stopwords));
 
-		Scanner s = new Scanner(new File("lab2\\n" + //
-				"ilsholg.txt"), "utf-8");
+		Scanner s = new Scanner(new File("lab2\\nilsholg.txt"), "utf-8");
 
 		s.findWithinHorizon("\uFEFF", 1);
 		s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+"); // se handledning
