@@ -5,6 +5,8 @@ hashmap:
 
 -> Median 12533.9461 ms
 
+HashMap ska vara snabbare!
+
 TreeMap:
 1: tid: 9741.4761 ms
 2: tid: 10050.4678 ms
