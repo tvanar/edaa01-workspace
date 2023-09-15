@@ -7,7 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
+import java.util.List;
+import java.lang.Character;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -24,11 +25,15 @@ public class BookReaderController {
         
         JFrame frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(width, height);
         Container pane = frame.getContentPane();
 
-        SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(counter.getWordList());
+        List<Map.Entry<String, Integer>> templist = counter.getWordList();
+        // templist.removeIf((k,v) -> k.isDigit());
+
+        SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(templist);
         JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>(listModel);
-                
+        
 
         JScrollPane scrollPane = new JScrollPane(list);
         JButton alpha = new JButton("Alphabetical");
