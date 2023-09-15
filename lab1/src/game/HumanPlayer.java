@@ -8,14 +8,13 @@ public class HumanPlayer extends Player {
 
     int takePins(Board b) {
         int pinsLeft = b.getNoPins();
-        boolean invalid = true;
         int pinsTaken = 0;
 
-        while (invalid) {
+        while (true) {
             pinsTaken = UserInterface
                     .askForInt("Din tur.\nDet finns " + pinsLeft + " pinnar kvar.\nHur många vill du ta?");
-            if (pinsTaken == 1 || pinsTaken == 2) {
-                invalid = false;
+            if ((pinsTaken == 1 || pinsTaken == 2) && pinsTaken <= b.getNoPins()) {
+                break;
             } else if (pinsTaken == -2) {
                 System.exit(0);
             } else {
