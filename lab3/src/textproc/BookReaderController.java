@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -36,16 +37,26 @@ public class BookReaderController {
         panel.add(alpha);
         panel.add(freq);
         
+
+        /*
+         * gör något när man trycker på knappen
+         * e:et ska vara där tydl. annars bara labdautrryck.
+         */
         alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
         freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
         
-        JTextField searchbar = new JTextField("Sök efter ord.");
+        JTextField searchbar = new JTextField();
+        JButton find = new JButton("Find");
+
+        // find.addActionListener();
 
 
+        panel.add(searchbar);
+        panel.add(find, BorderLayout.EAST);
 
         pane.add(scrollPane);
         pane.add(panel, BorderLayout.SOUTH);
-        pane.add(searchbar,BorderLayout.EAST);
+        // pane.add(searchbar,BorderLayout.EAST);
         
         frame.pack();
         frame.setVisible(true);
