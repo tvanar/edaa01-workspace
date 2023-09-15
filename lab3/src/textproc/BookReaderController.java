@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
 import java.awt.BorderLayout;
@@ -35,11 +36,16 @@ public class BookReaderController {
         panel.add(alpha);
         panel.add(freq);
         
-        alpha.addActionListener(null);//??????
+        alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
+        freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
         
+        JTextField searchbar = new JTextField("Sök efter ord.");
+
+
 
         pane.add(scrollPane);
         pane.add(panel, BorderLayout.SOUTH);
+        pane.add(searchbar,BorderLayout.EAST);
         
         frame.pack();
         frame.setVisible(true);
