@@ -28,7 +28,7 @@ public class BookReaderController {
         Container pane = frame.getContentPane();
 
         List<Map.Entry<String, Integer>> templist = counter.getWordList();
-        //Borde gå att korta ned
+        // Borde gå att korta ned
         templist.removeIf(n -> {
             String temp = n.getKey();
             for (int i = 0; i < temp.length(); i++) {
@@ -56,10 +56,10 @@ public class BookReaderController {
         alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
         freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
 
-        JTextField searchbar = new JTextField();
+        JTextField searchbar = new JTextField("\t");
         JButton find = new JButton("Find");
 
-        // find.addActionListener();
+        // find.addActionListener(e -> );
 
         panel.add(searchbar);
         panel.add(find, BorderLayout.EAST);
