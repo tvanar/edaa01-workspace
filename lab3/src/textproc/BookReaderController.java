@@ -56,10 +56,16 @@ public class BookReaderController {
         alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
         freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
 
-        JTextField searchbar = new JTextField("\t");
+        JTextField searchbar = new JTextField(10);
         JButton find = new JButton("Find");
 
-        // find.addActionListener(e -> );
+        find.addActionListener(e -> {
+            for(int i = 0; i < listModel.getSize(); i++) {
+                if(listModel.getElementAt(i).getKey() == searchbar.getText()) {
+                    list.ensureIndexIsVisible(i);
+                }
+            }
+        });
 
         panel.add(searchbar);
         panel.add(find, BorderLayout.EAST);
