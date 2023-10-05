@@ -49,20 +49,20 @@ public class BookReaderController {
         panel.add(alpha);
         panel.add(freq);
 
-        /*
-         * gör något när man trycker på knappen
-         * e:et ska vara där tydl. annars bara labdautrryck.
-         */
         alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
         freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
 
         JTextField searchbar = new JTextField(10);
         JButton find = new JButton("Find");
+        // searchbar.addKeyListener(MK);
 
+
+        //LOL satt i 40 min på att jag glömde bort att string comparison i java kräver ==, jag har skrivit för mycket python
         find.addActionListener(e -> {
             for(int i = 0; i < listModel.getSize(); i++) {
-                if(listModel.getElementAt(i).getKey() == searchbar.getText()) {
+                if(listModel.getElementAt(i).getKey().equals(searchbar.getText().trim().toLowerCase())) {
                     list.ensureIndexIsVisible(i);
+                    break;
                 }
             }
         });

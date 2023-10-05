@@ -25,6 +25,7 @@ public class BookReaderApplication {
             wordCounter.process(s.next().toLowerCase());
         }
         s.close();
+        
 
         BookReaderController controller = new BookReaderController(wordCounter);
 
