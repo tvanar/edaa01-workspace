@@ -1,8 +1,11 @@
 package textproc;
 
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -12,6 +15,8 @@ import java.lang.Character;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Map;
 
 public class BookReaderController {
@@ -43,29 +48,54 @@ public class BookReaderController {
         JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>(listModel);
 
         JScrollPane scrollPane = new JScrollPane(list);
-        JButton alpha = new JButton("Alphabetical");
-        JButton freq = new JButton("Frequency");
+        JRadioButton alpha = new JRadioButton("Alphabetical");
+        JRadioButton freq = new JRadioButton("Frequency");
+        ButtonGroup Bgroup = new ButtonGroup();
+        Bgroup.add(alpha);
+        Bgroup.add(freq);
+
         JPanel panel = new JPanel();
-        panel.add(alpha);
         panel.add(freq);
+        panel.add(alpha);
+        JButton search = new JButton("Sort");
+        panel.add(search);
 
-        alpha.addActionListener(e -> listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey())));
-        freq.addActionListener(e -> listModel.sort((w1, w2) -> w2.getValue() - w1.getValue()));
+        // xD det funkar direkt
+        search.addActionListener(e -> {
+            if (alpha.isSelected()) {
+                listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey()));
+            } else if (freq.isSelected()) {
+                listModel.sort((w1, w2) -> w2.getValue() - w1.getValue());
+            } else {
+                JOptionPane.showMessageDialog(new JFrame("msg"), "Välj en knapp");
+            }
 
-        JTextField searchbar = new JTextField(10);
+        });
+
+        JTextField searchbar = new JTextField(15);
         JButton find = new JButton("Find");
-        // searchbar.addKeyListener(MK);
 
+        searchbar.addKeyListener(new KeyListener() {
 
-        //LOL satt i 40 min på att jag glömde bort att string comparison i java kräver ==, jag har skrivit för mycket python
-        find.addActionListener(e -> {
-            for(int i = 0; i < listModel.getSize(); i++) {
-                if(listModel.getElementAt(i).getKey().equals(searchbar.getText().trim().toLowerCase())) {
-                    list.ensureIndexIsVisible(i);
-                    break;
+            public void keyTyped(KeyEvent e) {
+                // används inte
+            }
+
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    list.ensureIndexIsVisible(search(listModel, searchbar));
                 }
             }
+
+            public void keyReleased(KeyEvent e) {
+                // används inte
+            }
         });
+
+        // LOL satt i 40 min på att jag glömde bort att string comparison i java kräver
+        // ==
+        // jag har skrivit för mycket python
+        find.addActionListener(e -> list.ensureIndexIsVisible(search(listModel, searchbar)));
 
         panel.add(searchbar);
         panel.add(find, BorderLayout.EAST);
@@ -74,8 +104,19 @@ public class BookReaderController {
         pane.add(panel, BorderLayout.SOUTH);
         // pane.add(searchbar,BorderLayout.EAST);
 
+        pane.setSize(width, height);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private int search(SortedListModel<Map.Entry<String, Integer>> lm, JTextField input) {
+        for (int i = 0; i < lm.getSize(); i++) {
+            if (lm.getElementAt(i).getKey().equals(input.getText().trim().toLowerCase())) {
+                return i;
+            }
+        }
+        JOptionPane.showMessageDialog(new JFrame("msg"), "Ordet finns ej i listan");
+        return 0;
     }
 
 }
