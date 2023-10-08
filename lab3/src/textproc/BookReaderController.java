@@ -34,7 +34,7 @@ public class BookReaderController {
 
         List<Map.Entry<String, Integer>> templist = counter.getWordList();
 
-        //borde gå att korta ned
+        // borde gå att korta ned
         templist.removeIf(n -> {
             String temp = n.getKey();
             for (int i = 0; i < temp.length(); i++) {
@@ -93,7 +93,7 @@ public class BookReaderController {
             }
         });
 
-        // LOL satt i 40 min på att jag glömde bort att string comparison i java kräver
+        // LOL satt i 10 min på att jag glömde bort att string comparison i java kräver
         // ==
         // jag har skrivit för mycket python
         find.addActionListener(e -> list.ensureIndexIsVisible(search(listModel, searchbar)));
