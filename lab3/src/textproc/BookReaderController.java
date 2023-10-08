@@ -33,7 +33,8 @@ public class BookReaderController {
         Container pane = frame.getContentPane();
 
         List<Map.Entry<String, Integer>> templist = counter.getWordList();
-        // Borde gå att korta ned
+
+        //borde gå att korta ned
         templist.removeIf(n -> {
             String temp = n.getKey();
             for (int i = 0; i < temp.length(); i++) {
