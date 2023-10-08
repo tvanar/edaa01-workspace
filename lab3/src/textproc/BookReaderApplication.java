@@ -10,7 +10,7 @@ public class BookReaderApplication {
 
     public static void main(String[] args) throws FileNotFoundException {
 
-        Scanner scan = new Scanner(new File("lab3\\undantagsord.txt"));
+        Scanner scan = new Scanner(new File("lab3\\undantagsord.txt"), "utf-8");
         Set<String> stopwords = new HashSet<>();
         while (scan.hasNext()) {
             stopwords.add(scan.next().toLowerCase());

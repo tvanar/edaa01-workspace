@@ -33,17 +33,8 @@ public class BookReaderController {
         Container pane = frame.getContentPane();
 
         List<Map.Entry<String, Integer>> templist = counter.getWordList();
-
-        // borde gå att korta ned
-        templist.removeIf(n -> {
-            String temp = n.getKey();
-            for (int i = 0; i < temp.length(); i++) {
-                if (Character.isDigit(temp.charAt(i))) {
-                    return true;
-                }
-            }
-            return false;
-        });
+        // behöver bara kolla första bokstaven, ty alla siffror börjar med en siffra
+        templist.removeIf(n -> Character.isDigit(n.getKey().charAt(0)));
 
         SortedListModel<Map.Entry<String, Integer>> listModel = new SortedListModel<>(templist);
         JList<Map.Entry<String, Integer>> list = new JList<Map.Entry<String, Integer>>(listModel);
@@ -103,7 +94,6 @@ public class BookReaderController {
 
         pane.add(scrollPane);
         pane.add(panel, BorderLayout.SOUTH);
-        // pane.add(searchbar,BorderLayout.EAST);
 
         pane.setSize(width, height);
         frame.pack();
@@ -117,7 +107,7 @@ public class BookReaderController {
             }
         }
         JOptionPane.showMessageDialog(new JFrame("msg"), "Ordet finns ej i listan");
-        return 0;
+        return 0; //skrollar högst upp på listan
     }
 
 }
