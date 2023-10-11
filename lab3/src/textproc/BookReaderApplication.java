@@ -17,7 +17,6 @@ public class BookReaderApplication {
         }
         scan.close();
         GeneralWordCounter wordCounter = new GeneralWordCounter(stopwords);
-
         Scanner s = new Scanner(new File("lab3\\nilsholg.txt"), "utf-8");
         s.findWithinHorizon("\uFEFF", 1);
         s.useDelimiter("(\\s|,|\\.|:|;|!|\\?|'|\\\")+");

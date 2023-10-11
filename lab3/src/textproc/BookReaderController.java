@@ -22,7 +22,7 @@ import java.util.Map;
 public class BookReaderController {
 
     public BookReaderController(GeneralWordCounter counter) {
-        SwingUtilities.invokeLater(() -> createWindow(counter, "BookReader", 1440, 900));
+        SwingUtilities.invokeLater(() -> createWindow(counter, "BookReader", 500, 400));
     }
 
     private void createWindow(GeneralWordCounter counter, String title, int width, int height) {
@@ -57,7 +57,14 @@ public class BookReaderController {
             if (alpha.isSelected()) {
                 listModel.sort((w1, w2) -> w1.getKey().compareTo(w2.getKey()));
             } else if (freq.isSelected()) {
-                listModel.sort((w1, w2) -> w2.getValue() - w1.getValue());
+                listModel.sort((w1, w2) -> {
+                    int compareTo = w2.getValue() - w1.getValue();
+                    if (compareTo != 0) {
+                        return compareTo;
+                    } else {
+                        return w1.getKey().compareTo(w2.getKey());
+                    }
+                });
             } else {
                 JOptionPane.showMessageDialog(new JFrame("msg"), "Välj en knapp");
             }
@@ -75,7 +82,12 @@ public class BookReaderController {
 
             public void keyPressed(KeyEvent e) {
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    list.ensureIndexIsVisible(search(listModel, searchbar));
+                    int index = search(listModel, searchbar);
+                    if (index >= 0) {
+                        list.ensureIndexIsVisible(index);
+                        list.setSelectedIndex(index);
+                    }
+
                 }
             }
 
@@ -87,7 +99,13 @@ public class BookReaderController {
         // LOL satt i 10 min på att jag glömde bort att string comparison i java kräver
         // ==
         // jag har skrivit för mycket python
-        find.addActionListener(e -> list.ensureIndexIsVisible(search(listModel, searchbar)));
+        find.addActionListener(e -> {
+            int index = search(listModel, searchbar);
+            if (index >= 0) {
+                list.ensureIndexIsVisible(index);
+                list.setSelectedIndex(index);
+            }
+        });
 
         panel.add(searchbar);
         panel.add(find, BorderLayout.EAST);
@@ -95,8 +113,8 @@ public class BookReaderController {
         pane.add(scrollPane);
         pane.add(panel, BorderLayout.SOUTH);
 
-        pane.setSize(width, height);
         frame.pack();
+        frame.setSize(width, height);
         frame.setVisible(true);
     }
 
@@ -107,7 +125,7 @@ public class BookReaderController {
             }
         }
         JOptionPane.showMessageDialog(new JFrame("msg"), "Ordet finns ej i listan");
-        return 0; //skrollar högst upp på listan
+        return -1; // skrollar högst upp på listan
     }
 
 }
