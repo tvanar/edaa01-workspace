@@ -59,22 +59,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	 * @return an iterator over the elements in this queue
 	 */
 	public Iterator<E> iterator() {
-		Iterator<E> it = new Iterator<E>() {
-
-			private Queue<E> temp = list;
-
-			public boolean hasNext() {
-				return !temp.isEmpty();
-			}
-
-			public E next() {
-				if (temp.isEmpty()) {
-					throw new NoSuchElementException();
-				}
-				return temp.poll(); 
-			}
-		};
-		return it;
+		return list.iterator();
 	}
 
 }
