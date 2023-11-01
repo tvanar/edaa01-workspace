@@ -72,9 +72,13 @@ public class TestAppendFifoQueue {
         myIntQueue2.offer(4);
         myIntQueue2.offer(5);
         myIntQueue2.offer(6);
+        myIntQueue2.offer(7);
         myIntQueue1.append(myIntQueue2);
-        assertEquals(6, myIntQueue1.size(), "Wrong size of queue");
-        for (int i = 1; i <= 6; i++) {
+        assertEquals(7, myIntQueue1.size(), "Wrong size of queue");
+        for (Integer integer : myIntQueue1) {
+            System.out.println(integer);
+        }
+        for (int i = 1; i <= 7; i++) {
 			int k = myIntQueue1.poll();
 			assertEquals(i, k, "poll returns incorrect element");
 		}

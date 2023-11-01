@@ -100,20 +100,18 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	public void append(FifoQueue<E> q) {
 		if (q.equals(this)) {
 			throw new IllegalArgumentException();
-		}
-		Iterator<E> iter = q.iterator();
-		while (iter.hasNext()) {
-			QueueNode<E> add = new QueueNode<>(iter.next());
-			if (last == null) {
-				size++;
-				last = add;
-				last.next = last;
-			} else {
-				size++;
-				add.next = last.next;
-				last.next = add;
-				last = add;
-			}
+		} else if (q.size == 0) {
+			return;
+		} else if (last == null) {
+			last = q.last;
+			size = q.size;
+		} else {
+			QueueNode<E> temp = null;
+			temp = q.last.next;
+			q.last.next = last.next;
+			last.next = temp;
+			last = q.last;
+			size += q.size;
 		}
 	}
 
@@ -130,10 +128,8 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 	private class QueueIterator implements Iterator<E> {
 
 		private QueueNode<E> pos;
-		private int iterations;
 
 		private QueueIterator() {
-			iterations = 1;
 			try {
 				pos = last.next;
 			} catch (NullPointerException e) {
@@ -141,23 +137,20 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 			}
 		}
 
-		/*
-		 * osäkert om detta är lagligt
-		 */
 		public boolean hasNext() {
-			if (pos == null) {
-				return false;
-			}
-			return iterations <= size;
+			return pos != null;
 		}
 
 		public E next() {
-			if (!hasNext()) {
+			if (pos == null) {
 				throw new NoSuchElementException();
+			} 
+			if (pos == last) {
+				pos = null;
+				return last.element;
 			}
 			E temp = pos.element;
 			pos = pos.next;
-			iterations++;
 			return temp;
 		}
 	}
