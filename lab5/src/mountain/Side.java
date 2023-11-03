@@ -17,7 +17,7 @@ public class Side {
 	public boolean equals(Object obj) {
 		if (obj instanceof Side) {
 			Side s = (Side) obj;
-			return a.getX() == s.getPointa().getX() && b.getX() == s.getPointb().getX() && a.getY() == s.getPointa().getY() && b.getY() == s.getPointb().getY();
+			return (a.equals(s.a) || b.equals(s.b)) && (a.equals(s.b) || b.equals(s.b));
 		} else {
 			return false;
 		}
