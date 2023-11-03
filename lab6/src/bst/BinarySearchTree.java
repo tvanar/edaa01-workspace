@@ -37,7 +37,7 @@ public class BinarySearchTree<E> {
 		if (root == null) {
 			root = add;
 			return true;
-		} else if (root.element.compareTo(x.element) < 0) {
+		} else if (root.element.compareTo(add.element) < 0) {
 			
 		}
 		
