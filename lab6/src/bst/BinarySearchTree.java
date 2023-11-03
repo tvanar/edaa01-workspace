@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class BinarySearchTree<E> {
 	BinaryNode<E> root; // Används också i BSTVisaulizer
 	int size; // Används också i BSTVisaulizer
-	private Comparator<E> ccomparator;
+	private Comparator<E> comp;
 
 	/**
 	 * Constructs an empty binary search tree.
@@ -15,7 +15,7 @@ public class BinarySearchTree<E> {
 	//känns fett olagligt att casta såhär
 	public BinarySearchTree() {
 		this.root = null;
-		ccomparator = (o1, o2) -> ((Comparable<E>) o1).compareTo(o2);
+		comp = (o1, o2) -> ((Comparable<E>) o1).compareTo(o2);
 	}
 
 	/**
@@ -23,7 +23,7 @@ public class BinarySearchTree<E> {
 	 * comparator.
 	 */
 	public BinarySearchTree(Comparator<E> comparator) {
-		this.ccomparator = comparator;
+		this.comp = comparator;
 	}
 
 	/**
@@ -37,10 +37,10 @@ public class BinarySearchTree<E> {
 		if (root == null) {
 			root = add;
 			return true;
-		} else if (root.element.compareTo(add.element) < 0) {
+		} else if ( comp.compare(add.element, root.element) < 0) { //replace
 			
 		}
-		
+		return true;
 	}
 
 	/**
