@@ -76,14 +76,6 @@ public class Mountain extends Fractal {
             } else {
                 z = map.get(ca);
             }
-
-                // x = midPoint(a, b); // vänster mitt
-                // Side s12 = new Side(a, b); // reciprok sida
-                // y = midPoint(b, c); // höger mitt
-                // Side s23 = new Side(b, c); // --||--
-                // z = midPoint(a, c); // botten mitt
-                // Side s31 = new Side(a, c); // --||-- 
-            
             fractalLine(turtle, order - 1, a, x, z, dev / 2);
             fractalLine(turtle, order - 1, x, b, y, dev / 2);
             fractalLine(turtle, order - 1, z, y, c, dev / 2);
