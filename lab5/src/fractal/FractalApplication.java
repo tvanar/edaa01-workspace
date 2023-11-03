@@ -11,5 +11,4 @@ public class FractalApplication {
 		fractals[0] = new Mountain(new Point(100, 425), new Point(250, 100), new Point(500, 450), 5);
 		new FractalView(fractals, "Fraktaler", 600, 600);
 	}
-
 }
