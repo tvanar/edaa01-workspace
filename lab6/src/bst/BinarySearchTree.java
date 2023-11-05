@@ -168,6 +168,7 @@ public class BinarySearchTree<E> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
+		
 		return null;
 	}
 
