@@ -2,9 +2,7 @@ package bst;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
-import javax.sql.rowset.BaseRowSet;
 
 public class BinarySearchTree<E> {
 	BinaryNode<E> root; // Används också i BSTVisaulizer
@@ -34,6 +32,7 @@ public class BinarySearchTree<E> {
 	 */
 
 	// känns fett olagligt att casta såhär
+	// borde funka sålänge man inte använder object utan comparatorer
 	public BinarySearchTree() {
 		size = 0;
 		this.root = null;
