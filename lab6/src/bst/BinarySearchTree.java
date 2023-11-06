@@ -1,8 +1,9 @@
 package bst;
 
+import java.util.concurrent.TimeUnit;
+import java.util.Random;
 import java.util.ArrayList;
 import java.util.Comparator;
-
 
 public class BinarySearchTree<E> {
 	BinaryNode<E> root; // Används också i BSTVisaulizer
@@ -11,22 +12,22 @@ public class BinarySearchTree<E> {
 
 	public static void main(String[] args) {
 		BinarySearchTree<Integer> tree = new BinarySearchTree<>();
-		tree.add(3);
+		Random rand = new Random();
 		tree.add(5);
-		tree.add(1);
-		tree.add(7);
-		tree.add(11);
-		tree.add(9);
-		tree.add(13);
-		
-
-		BSTVisualizer visualizer = new BSTVisualizer("Draw Tree", 400, 400);
-		// visualizer.drawTree(tree);
-		// tree.rebuild();
+		for (int i = 0; i < 26; i++) {
+			tree.add(rand.nextInt(101));
+		}
+		BSTVisualizer visualizer = new BSTVisualizer("Draw Tree", 500, 400);
+		visualizer.drawTree(tree);
+		try {
+			TimeUnit.SECONDS.sleep(10);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		tree.rebuild();
 		visualizer.drawTree(tree);
 	}
 
-	
 	/**
 	 * Constructs an empty binary search tree.
 	 */
@@ -145,14 +146,13 @@ public class BinarySearchTree<E> {
 	public void rebuild() {
 		ArrayList<E> sorted = new ArrayList<>();
 		toArray(root, sorted);
-		root = buildTree(sorted, 0, size);
+		root = buildTree(sorted, 0, size - 1); // size-1 är sista indexet
 	}
-
 
 	/*
 	 * Adds all elements from the tree rooted at n in inorder to the list sorted.
 	 */
-	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) { //funkar
+	private void toArray(BinaryNode<E> n, ArrayList<E> sorted) { // funkar
 		if (n == null) {
 			return;
 		}
@@ -168,7 +168,25 @@ public class BinarySearchTree<E> {
 	 * Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(ArrayList<E> sorted, int first, int last) {
-		
+		ArrayList<E> top = new ArrayList<>();
+		ArrayList<E> bottom = new ArrayList<>();
+		int mid = 0;
+		if (!sorted.isEmpty()) {
+			if (sorted.size() != 1) {
+				mid = ((first + last) / 2);
+			}
+			BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
+			for (int i = 0; i < sorted.size(); i++) {
+				if (i < mid) {
+					bottom.add(sorted.get(i));
+				} else if (i > mid) {
+					top.add(sorted.get(i));
+				}
+			}
+			node.left = buildTree(bottom, first, mid);
+			node.right = buildTree(top, first, mid);
+			return node;
+		}
 		return null;
 	}
 
