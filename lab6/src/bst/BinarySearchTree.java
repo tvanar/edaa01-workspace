@@ -17,12 +17,6 @@ public class BinarySearchTree<E> {
 			tree.add(rand.nextInt(101));
 		}
 		BSTVisualizer visualizer = new BSTVisualizer("Draw Tree", 500, 400);
-		visualizer.drawTree(tree);
-		try {
-			TimeUnit.SECONDS.sleep(10);
-		} catch (Exception e) {
-
-		}
 		tree.rebuild();
 		visualizer.drawTree(tree);
 	}
@@ -171,7 +165,7 @@ public class BinarySearchTree<E> {
 		ArrayList<E> bottom = new ArrayList<>();
 		int mid = 0;
 		if (!sorted.isEmpty()) {
-			if (sorted.size() != 1) {
+			if(!(sorted.size() == 1)) {
 				mid = ((first + last) / 2);
 			}
 			BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
@@ -182,7 +176,7 @@ public class BinarySearchTree<E> {
 					top.add(sorted.get(i));
 				}
 			}
-			node.left = buildTree(bottom, first, mid);
+			node.left = buildTree(bottom, first, mid-1);
 			node.right = buildTree(top, first, mid);
 			return node;
 		}
