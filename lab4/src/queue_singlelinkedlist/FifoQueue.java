@@ -135,6 +135,7 @@ public class FifoQueue<E> extends AbstractQueue<E> implements Queue<E> {
 				pos = null;
 			}
 		}
+		
 
 		public boolean hasNext() {
 			return pos != null;
