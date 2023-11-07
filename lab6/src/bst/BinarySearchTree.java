@@ -13,8 +13,7 @@ public class BinarySearchTree<E> {
 	public static void main(String[] args) {
 		BinarySearchTree<Integer> tree = new BinarySearchTree<>();
 		Random rand = new Random();
-		tree.add(5);
-		for (int i = 0; i < 101; i++) {
+		for (int i = 0; i < 100; i++) {
 			tree.add(rand.nextInt(101));
 		}
 		BSTVisualizer visualizer = new BSTVisualizer("Draw Tree", 500, 400);
@@ -22,7 +21,7 @@ public class BinarySearchTree<E> {
 		try {
 			TimeUnit.SECONDS.sleep(10);
 		} catch (Exception e) {
-			// TODO: handle exception
+
 		}
 		tree.rebuild();
 		visualizer.drawTree(tree);
