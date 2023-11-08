@@ -139,7 +139,7 @@ public class BinarySearchTree<E> {
 	public void rebuild() {
 		ArrayList<E> sorted = new ArrayList<>();
 		toArray(root, sorted);
-		root = buildTree(sorted, 0, size - 1); // size-1 är sista indexet
+		root = buildTreeAlt(sorted, 0, size - 1);
 	}
 
 	/*
@@ -181,6 +181,18 @@ public class BinarySearchTree<E> {
 			return node;
 		}
 		return null;
+	}
+
+	private BinaryNode<E> buildTreeAlt(ArrayList<E> sorted, int first, int last) {
+		if (first > last) {
+			return null;
+		}
+		int mid = ((first + last) / 2);
+		BinaryNode<E> node = new BinaryNode<E>(sorted.get(mid));
+		// behöver inte bygga nya listor, räcker med att förskjuta index
+		node.left = buildTreeAlt(sorted, first, mid - 1);
+		node.right = buildTreeAlt(sorted, mid + 1, last);
+		return node;
 	}
 
 	static class BinaryNode<E> {
