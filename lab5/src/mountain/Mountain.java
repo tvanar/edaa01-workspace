@@ -64,17 +64,17 @@ public class Mountain extends Fractal {
                 x = midPoint(a, b);
                 map.put(ab, x);
             } else {
-                x = map.get(ab);
+                x = map.remove(ab);
             } if (!map.containsKey(bc)) {
                 y = midPoint(b, c);
                 map.put(bc, y);
             } else {
-                y = map.get(bc);
+                y = map.remove(bc);
             } if (!map.containsKey(ca)) {
                 z = midPoint(c, a);
                 map.put(ca,z);
             } else {
-                z = map.get(ca);
+                z = map.remove(ca);
             }
             fractalLine(turtle, order - 1, a, x, z, dev / 2);
             fractalLine(turtle, order - 1, x, b, y, dev / 2);
