@@ -61,17 +61,17 @@ public class Mountain extends Fractal {
             Side bc = new Side(b, c);
             Side ca = new Side(c, a);
             if (!map.containsKey(ab)) {
-                x = midPoint(a, b);
+                x = midPoint(a, b, dev);
                 map.put(ab, x);
             } else {
                 x = map.remove(ab);
             } if (!map.containsKey(bc)) {
-                y = midPoint(b, c);
+                y = midPoint(b, c, dev);
                 map.put(bc, y);
             } else {
                 y = map.remove(bc);
             } if (!map.containsKey(ca)) {
-                z = midPoint(c, a);
+                z = midPoint(c, a, dev);
                 map.put(ca,z);
             } else {
                 z = map.remove(ca);
@@ -104,7 +104,7 @@ public class Mountain extends Fractal {
      * @param Double deviationiation
      * @return Point inbetween a and b
      */
-    private Point midPoint(Point a, Point b) {
+    private Point midPoint(Point a, Point b, double dev) {
         return new Point(Math.round((a.getX() + b.getX()) / 2),
                 (int) Math.round(((a.getY() + b.getY()) / 2) + RandomUtilities.randFunc(dev)));
     }
